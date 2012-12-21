@@ -1,0 +1,73 @@
+﻿<#@ template debug="true" hostspecific="true" language="VB" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)MicrodataNetLexicon\bin\Debug\MicrodataNet.Lexicon.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="MicrodataNet.Lexicon" #>
+<#@ import namespace="MicrodataNet.Lexicon.CodeGeneration" #>
+<#@ output extension=".vb" #>
+Imports System.ComponentModel
+Imports MicrodataNet.Core
+
+<# 
+	Dim data As SchemaRoot = Loader.getJSON() 
+#>
+
+<# For Each item As ThingCreatorDescriptor In data.types #>
+Public Interface I<#=item.ID#>
+
+<# Dim myProps as SchemaPropertyDescriptor() = data.TypeProperties(item.ID) 
+For Each prop as SchemaPropertyDescriptor In myProps #>
+	Property [<#=prop.ID#>] As Object
+
+<#Next#>
+End Interface
+
+''' <summary>
+''' <#= Loader.F(item.Comment_Plain) #>
+''' </summary>
+<DisplayName("<#=item.Label#>")> _
+<SchemaDefinition("<#=item.ID#>", "<#=item.Url#>")> _
+Public Class [<#=item.ID#>]
+	Inherits SchemaDefinitionBase
+	Implements I<#=item.ID#>
+<# If data.ClassInherits.ContainsKey(item.ID) = True Then #>
+<# 
+	Dim inhr = data.ClassInherits(item.ID)
+	For Each inf As SchemaTypeDescriptor In inhr #>
+	Implements I<#=inf.ID#>
+<# Next #>
+<# End If #>
+
+<# Dim gp As Dictionary(of String, SchemaTypeDescriptor()) = data.GroupedProperties(item.ID)
+	PushIndent(Microsoft.VisualBasic.Constants.VbTab)
+	For Each pid As String In gp.Keys
+		Dim prop = data.PropMap(pid)
+		Dim owners as SchemaTypeDescriptor() = gp(pid)
+		Dim map As String() = owners.Select(Function(i) String.Format("I{0}.{1}", i.ID, pid)).ToArray()
+		WriteLine("''' <summary>")
+		WriteLine(String.Format("''' {0}", Loader.F(prop.Comment_Plain)))
+		WriteLine("''' </summary>")
+		WriteLine("<DisplayName(""{0}"")> _", prop.Label)
+		WriteLine("<SchemaDefinition(""{0}"", Nothing)> _", prop.ID)
+		WriteLine(String.Format("Public Property [{0}] As Object Implements {1}", pid, Microsoft.VisualBasic.Strings.Join(map, ", ")))
+			PushIndent(Microsoft.VisualBasic.Constants.VbTab)
+			WriteLine("Get")
+				PushIndent(Microsoft.VisualBasic.Constants.VbTab)
+				WriteLine("Return Me(""{0}"")", pid)
+				PopIndent()
+			WriteLine("End Get")
+			WriteLine("Set(ByVal value As Object)")
+				PushIndent(Microsoft.VisualBasic.Constants.VbTab)
+				WriteLine("Me(""{0}"") = value", pid)
+				PopIndent()
+			WriteLine("End Set")
+			PopIndent()
+		WriteLine("End Property")
+	Next
+	PopIndent
+#>
+
+End Class
+<# Next #>

@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 11
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MicrodataNet.Core", "SchemaOrgToNet\MicrodataNet.Core.vbproj", "{2034EC4D-9A31-40BA-8E43-EC2A71AC43AD}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MicrodataNet.Lexicon", "MicrodataNetLexicon\MicrodataNet.Lexicon.vbproj", "{0220F356-8275-4D52-9E4F-A5EB9FEF737B}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MicrodataNet.MongoDB", "MicrodataNet.MongoDB\MicrodataNet.MongoDB.vbproj", "{42B8C8F2-C94A-4560-BA20-109A63F19740}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MicrodataNet.MongoDB.Test", "MicrodataNet.MongoDB.Test\MicrodataNet.MongoDB.Test.vbproj", "{147594B0-460A-456E-8F1C-343C016E911E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0220F356-8275-4D52-9E4F-A5EB9FEF737B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0220F356-8275-4D52-9E4F-A5EB9FEF737B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0220F356-8275-4D52-9E4F-A5EB9FEF737B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0220F356-8275-4D52-9E4F-A5EB9FEF737B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{147594B0-460A-456E-8F1C-343C016E911E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{147594B0-460A-456E-8F1C-343C016E911E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{147594B0-460A-456E-8F1C-343C016E911E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{147594B0-460A-456E-8F1C-343C016E911E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2034EC4D-9A31-40BA-8E43-EC2A71AC43AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2034EC4D-9A31-40BA-8E43-EC2A71AC43AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2034EC4D-9A31-40BA-8E43-EC2A71AC43AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2034EC4D-9A31-40BA-8E43-EC2A71AC43AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42B8C8F2-C94A-4560-BA20-109A63F19740}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42B8C8F2-C94A-4560-BA20-109A63F19740}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42B8C8F2-C94A-4560-BA20-109A63F19740}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42B8C8F2-C94A-4560-BA20-109A63F19740}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
